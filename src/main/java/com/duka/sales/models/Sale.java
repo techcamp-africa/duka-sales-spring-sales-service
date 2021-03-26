@@ -12,11 +12,6 @@ import javax.persistence.Table;
 @Table(name = "sales")
 public class Sale extends AuditModel {
 	
-	  /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	  @GeneratedValue(generator = "sale_generator")
 	  @SequenceGenerator(
@@ -31,5 +26,41 @@ public class Sale extends AuditModel {
 	  
 	  @Column(name="quantity",nullable=false)
 	  private int quantity;
-	  
+
+	public Sale() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Sale(Long id, int invId, int quantity) {
+		super();
+		this.id = id;
+		this.invId = invId;
+		this.quantity = quantity;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getInvId() {
+		return invId;
+	}
+
+	public void setInvId(int invId) {
+		this.invId = invId;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	  	  
 }
