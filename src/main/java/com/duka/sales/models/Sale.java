@@ -25,7 +25,7 @@ public class Sale {
 	    private Long id;
 	  
 	  @Column(name="inv_id",nullable=false)
-	  private int inv_id;
+	  private int invId;
 	  
 	  @Column(name="quantity",nullable=false)
 	  private int quantity;

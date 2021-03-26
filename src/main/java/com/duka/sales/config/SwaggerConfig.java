@@ -18,7 +18,7 @@ public class SwaggerConfig {
     public Docket api(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("app.techcamp.elearn.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("com.duka.sales.controllers"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
@@ -26,10 +26,10 @@ public class SwaggerConfig {
     
 	
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("TechCamp Journey Service")
-				.description("TechCamp Private API reference for developers.")
-				.termsOfServiceUrl("https://techcamp.app")
-				.license("TechCamp License")
-				.licenseUrl("https://policy.techcamp.app").version("1.0").build();
+		return new ApiInfoBuilder().title("Duka Sales Service")
+				.description("Duka Private API reference for developers.")
+				.termsOfServiceUrl("https://duka.com")
+				.license("Duka License")
+				.licenseUrl("https://duka.com").version("1.0").build();
 	}
 }

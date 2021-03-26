@@ -30,7 +30,7 @@ public class SalesController {
 	 @GetMapping("/sales/{inv_id}")
 	 public List<Sale> getAllSalesByInventory(@PathVariable Long inv_id ) 
 	 {
-	  	return salesrepo.findByInvId();        
+	  	return salesrepo.findByInvId(inv_id);        
 	 }
 	 
 	 @PostMapping("/sales")
