@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
 
@@ -31,7 +33,7 @@ public class Sale {
 	  private int quantity;
 	  
 	  
-//	  @Temporal(TemporalType.TIMESTAMP)
+	  @Temporal(TemporalType.TIMESTAMP)
 	  @Column(name = "created_at", nullable = false, updatable = false)
 	  @CreatedDate
 	    private Date createdAt;
