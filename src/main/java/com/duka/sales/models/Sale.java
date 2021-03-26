@@ -1,23 +1,23 @@
 package com.duka.sales.models;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "sales")
-public class Sale {
+public class Sale extends AuditModel {
 	
-	  @Id
+	  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
 	  @GeneratedValue(generator = "sale_generator")
 	  @SequenceGenerator(
 	            name = "sale_generator",
@@ -32,10 +32,4 @@ public class Sale {
 	  @Column(name="quantity",nullable=false)
 	  private int quantity;
 	  
-	  
-	  @Temporal(TemporalType.TIMESTAMP)
-	  @Column(name = "created_at", nullable = false, updatable = false)
-	  @CreatedDate
-	    private Date createdAt;
-
 }
