@@ -34,7 +34,7 @@ public class SalesController {
 	 }
 	 
 	 @PostMapping("/sales")
-	 public Sale createSale(@Validated @RequestBody Sale sale) 
+	 public Sale createSale(@RequestBody Sale sale) 
 	 { 
     	return salesrepo.save(sale);
 	 }
