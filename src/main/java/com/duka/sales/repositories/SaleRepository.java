@@ -8,6 +8,6 @@ import com.duka.sales.models.Sale;
 
 public interface SaleRepository extends JpaRepository<Sale, Long> {
 
-	List<Sale> findByInvId(Long inv_id);
+	List<Sale> findByInvId(int inv_id);
 
 }

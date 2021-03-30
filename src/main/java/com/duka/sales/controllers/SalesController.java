@@ -1,7 +1,12 @@
 package com.duka.sales.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -16,12 +21,17 @@ import com.duka.sales.exceptions.ResourceNotFoundException;
 import com.duka.sales.models.Sale;
 import com.duka.sales.pojo.Inventory;
 import com.duka.sales.repositories.SaleRepository;
+import org.springframework.amqp.core.Queue;
 
-import static java.util.Objects.isNull;
 
 @RestController
 @Component
 public class SalesController {
+	
+	private Inventory inventory;
+	
+	@Autowired
+	private AmqpTemplate amqpTemplate;
 	
 	@Autowired
 	private SaleRepository salesrepo;
@@ -32,35 +42,56 @@ public class SalesController {
 	@Autowired
 	RestTemplate restTemplate;
 	
+	@Autowired
+    private Queue queue;
+	
 	
 	 @GetMapping("/sales")
 	 public List<Sale> getAllSales() 
 	 {
+		logger("Browser", "All Records fetched"); 
 	  	return salesrepo.findAll();        
 	 }
 	 
 	 @GetMapping("/sales/{inv_id}")
-	 public List<Sale> getAllSalesByInventory(@PathVariable Long inv_id ) 
+	 public List<Sale> getAllSalesByInventory(@PathVariable String inv_id ) 
 	 {
-	  	return salesrepo.findByInvId(inv_id);        
+		 int id = new Integer(inv_id);
+		 logger("Browser", "Records fetched for inventory id "+ inv_id);
+
+	  	 return salesrepo.findByInvId(id);        
 	 }
 	 
 	 @PostMapping("/sales")
 	 public Sale createSale(@RequestBody Sale sale) 
 	 { 
-		 
-			 String full_url = this.sales_url + "/inventories/" + sale.getInvId();
 		
-			 Inventory inventory = restTemplate.getForObject(full_url, Inventory.class);
+			 String full_url = this.sales_url + "/inventories/" + sale.getInvId();
 			 
-			 if(inventory.getId() > 0) 
-			 {
-				 return salesrepo.save(sale); 	
-		     }	
+			 try {
+				 this.inventory = restTemplate.getForObject(full_url, Inventory.class);
+				 Sale s = salesrepo.save(sale);
+				 logger("Browser", "Successfull Save Sale Record No.: " + s.getId());
+				 return s;
 			 
-			 throw new ResourceNotFoundException("inventory with id " + inventory.getId() + " not found");
+			 }catch (Exception e) {
+				
+				 logger("Browser", "Failed Save Sale Record Inventory No.: " + sale.getInvId());
+				 throw new ResourceNotFoundException("inventory with id " + sale.getInvId() + " not found");
+			}
+			 		 
+
+	 }
 	 
-	    	
+	 public String logger(String useragent,String message)
+	 {
+		 String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+		 HashMap<String, String> s = new HashMap<String, String>();
+		 s.put("timestamp", timeStamp);
+		 s.put("message", message);
+		 s.put("user-agent", useragent);
 		 
+		 amqpTemplate.convertAndSend(queue.getName(), s);
+		 return "successfully logged"; 
 	 }
 }

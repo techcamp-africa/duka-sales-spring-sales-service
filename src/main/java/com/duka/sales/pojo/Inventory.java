@@ -77,7 +77,7 @@ public void setSellingPrice(Integer sellingPrice) {
 this.sellingPrice = sellingPrice;
 }
 
-public Integer getId() {
+public Integer sale.getInvId()() {
 return id;
 }
 
