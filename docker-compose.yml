@@ -1,9 +1,9 @@
-version: "2"
+version: "3"
 services: 
    web:
       build: .
       container_name: "duka-sales-spring-sales-service_web"
       restart: always
-      network_mode: "host"
+      network_mode: host
       ports:
          - 8080:8080
