@@ -4,6 +4,6 @@ services:
       build: .
       container_name: "duka-sales-spring-sales-service_web"
       restart: always
-      network_mode: host
+      network_mode: bridge
       ports:
          - 8080:8080
