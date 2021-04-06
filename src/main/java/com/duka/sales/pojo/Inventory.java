@@ -22,17 +22,7 @@ private Map<String, Object> additionalProperties = new HashMap<String, Object>()
 public Inventory() {
 }
 
-/**
-*
-* @param createdAt
-* @param sellingPrice
-* @param buyingPrice
-* @param isbnNo
-* @param id
-* @param title
-* @param publicId
-* @param updatedAt
-*/
+
 public Inventory(String title, String isbnNo, Integer buyingPrice, Integer sellingPrice, Integer id, String publicId, String createdAt, String updatedAt) {
 super();
 this.title = title;
@@ -77,7 +67,7 @@ public void setSellingPrice(Integer sellingPrice) {
 this.sellingPrice = sellingPrice;
 }
 
-public Integer sale.getInvId()() {
+public Integer getInvId() {
 return id;
 }
 
