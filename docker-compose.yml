@@ -2,7 +2,7 @@ version: "2"
 services: 
    web:
       build: .
-      container_name: "duka-sales-img"
+      container_name: "duka-sales-spring-sales-service_web"
       restart: always
       network_mode: "host"
       ports:
