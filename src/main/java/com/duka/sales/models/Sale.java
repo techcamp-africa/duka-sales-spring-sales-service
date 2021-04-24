@@ -12,14 +12,14 @@ import javax.persistence.Table;
 @Table(name = "sales")
 public class Sale extends AuditModel {
 	
-	@Id
+	  @Id
 	  @GeneratedValue(generator = "sale_generator")
 	  @SequenceGenerator(
 	            name = "sale_generator",
 	            sequenceName = "sale_sequence",
 	            initialValue = 1000
 	    )
-	    private Long id;
+	   private Long id;
 	  
 	  @Column(name="inv_id",nullable=false)
 	  private int invId;
@@ -29,7 +29,6 @@ public class Sale extends AuditModel {
 
 	public Sale() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Sale(Long id, int invId, int quantity) {

@@ -1,5 +1,6 @@
 package com.duka.sales.controllers;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -49,7 +50,7 @@ public class SalesController {
 	 @GetMapping("/sales")
 	 public List<Sale> getAllSales() 
 	 {
-		logger("Browser", "All Records fetched"); 
+		logger("Browser", "All Sales Records fetched"); 
 	  	return salesrepo.findAll();        
 	 }
 	 
@@ -57,7 +58,7 @@ public class SalesController {
 	 public List<Sale> getAllSalesByInventory(@PathVariable String inv_id ) 
 	 {
 		 int id = new Integer(inv_id);
-		 logger("Browser", "Records fetched for inventory id "+ inv_id);
+		 logger("Browser", "Sales Records fetched for inventory id "+ inv_id);
 
 	  	 return salesrepo.findByInvId(id);        
 	 }
@@ -85,13 +86,16 @@ public class SalesController {
 	 
 	 public String logger(String useragent,String message)
 	 {
-		 String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-		 HashMap<String, String> s = new HashMap<String, String>();
-		 s.put("timestamp", timeStamp);
-		 s.put("message", message);
-		 s.put("user-agent", useragent);
-		 
-		 amqpTemplate.convertAndSend(queue.getName(), s);
+		 StringBuffer mystring = new StringBuffer(); 
+		 mystring.append(new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()));
+		 mystring.append(",");
+		 mystring.append(message);
+		 mystring.append(",");
+		 mystring.append(useragent);
+		 		 
+		 amqpTemplate.convertAndSend(queue.getName(), new String(mystring));
 		 return "successfully logged"; 
 	 }
+	 
+	
 }
