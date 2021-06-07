@@ -26,40 +26,62 @@ public class Sale extends AuditModel {
 	  
 	  @Column(name="quantity",nullable=false)
 	  private int quantity;
+	  
+	  @Column(name="uid",nullable=false)
+	  private String uid;
+
 
 	public Sale() {
 		super();
 	}
 
-	public Sale(Long id, int invId, int quantity) {
+
+	public Sale(Long id, int invId, int quantity, String uid) {
 		super();
 		this.id = id;
 		this.invId = invId;
 		this.quantity = quantity;
+		this.uid = uid;
 	}
+
 
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 	public int getInvId() {
 		return invId;
 	}
 
+
 	public void setInvId(int invId) {
 		this.invId = invId;
 	}
+
 
 	public int getQuantity() {
 		return quantity;
 	}
 
+
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	  	  
+
+
+	public String getUid() {
+		return uid;
+	}
+
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
 }

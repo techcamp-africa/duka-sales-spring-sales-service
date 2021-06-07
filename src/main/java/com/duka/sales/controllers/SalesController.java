@@ -65,17 +65,17 @@ public class SalesController {
 		
 			 String full_url = this.sales_url + "/inventories/" + sale.getInvId();
 			 
-			 try {
+//			 try {
 				 this.inventory = restTemplate.getForObject(full_url, Inventory.class);
 				 Sale s = salesrepo.save(sale);
 				 logger("Successfull Save Sale Record No.: " + s.getId());
 				 return s;
 			 
-			 }catch (Exception e) {
-				
-				 logger("Failed Save Sale Record Inventory No.: " + sale.getInvId());
-				 throw new ResourceNotFoundException("inventory with id " + sale.getInvId() + " not found");
-			}
+//			 }catch (Exception e) {
+//				
+//				 logger("Failed Save Sale Record Inventory No.: " + sale.getInvId());
+//				 throw new ResourceNotFoundException("inventory with id " + sale.getInvId() + " not found");
+//			}
 			 		 
 
 	 }
