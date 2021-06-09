@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.duka.sales.exceptions.ErrorException;
 import com.duka.sales.exceptions.ResourceNotFoundException;
 import com.duka.sales.models.Sale;
 import com.duka.sales.pojo.Inventory;
@@ -53,36 +54,49 @@ public class SalesController {
 	 @GetMapping("/sales/{inv_id}")
 	 public List<Sale> getAllSalesByInventory(@PathVariable String inv_id ) 
 	 {
-		 int id = new Integer(inv_id);
-		 logger("Sales Records fetched for inventory id "+ inv_id);
+		 try {
+			 
+			 int id = new Integer(inv_id);
+			 logger("Sales Records fetched for inventory id "+ inv_id);
 
-	  	 return salesrepo.findByInvId(id);        
+		  	 return salesrepo.findByInvId(id);   
+		 }
+		 catch (Exception e)
+		 {
+			 throw new ErrorException("Invalid value given");
+		 }
+		       
+	 }
+	 
+	 @GetMapping("/sales/user/{uid}")
+	 public List<Sale> getAllSalesByUser(@PathVariable String uid ) 
+	 {
+		 String id = new String(uid);
+		 logger("Sales Records fetched for user id "+ uid);
+
+	  	 return salesrepo.findByUid(id);        
 	 }
 	 
 	 @PostMapping("/sales")
 	 public Sale createSale(@RequestBody Sale sale) 
 	 { 
-		
 			 String full_url = this.sales_url + "/inventories/" + sale.getInvId();
 			 
-//			 try {
+			 try {
 				 this.inventory = restTemplate.getForObject(full_url, Inventory.class);
 				 Sale s = salesrepo.save(sale);
 				 logger("Successfull Save Sale Record No.: " + s.getId());
 				 return s;
 			 
-//			 }catch (Exception e) {
-//				
-//				 logger("Failed Save Sale Record Inventory No.: " + sale.getInvId());
-//				 throw new ResourceNotFoundException("inventory with id " + sale.getInvId() + " not found");
-//			}
-			 		 
-
+			 }catch (Exception e) {
+				
+				 logger("Failed Save Sale Record Inventory No.: " + sale.getInvId());
+				 throw new ResourceNotFoundException("inventory with id " + sale.getInvId() + " not found");
+			}
 	 }
 	 
 	 public String logger(String message)
-	 {
-		 		 
+	 { 		 
 		 amqpTemplate.convertAndSend(queue.getName(), new String(message));
 		 return "successfully logged"; 
 	 }

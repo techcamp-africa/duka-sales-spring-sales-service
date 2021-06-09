@@ -9,5 +9,6 @@ import com.duka.sales.models.Sale;
 public interface SaleRepository extends JpaRepository<Sale, Long> {
 
 	List<Sale> findByInvId(int inv_id);
-
+	
+	List<Sale> findByUid(String uid);
 }

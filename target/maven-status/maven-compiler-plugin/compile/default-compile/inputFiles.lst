@@ -4,6 +4,7 @@ C:\Users\edwin\Downloads\sales\sales\src\main\java\com\duka\sales\models\Sale.ja
 C:\Users\edwin\Downloads\sales\sales\src\main\java\com\duka\sales\SalesApplication.java
 C:\Users\edwin\Downloads\sales\sales\src\main\java\com\duka\sales\config\RestTemplateBean.java
 C:\Users\edwin\Downloads\sales\sales\src\main\java\com\duka\sales\controllers\SalesController.java
+C:\Users\edwin\Downloads\sales\sales\src\main\java\com\duka\sales\exceptions\ErrorException.java
 C:\Users\edwin\Downloads\sales\sales\src\main\java\com\duka\sales\models\AuditModel.java
 C:\Users\edwin\Downloads\sales\sales\src\main\java\com\duka\sales\config\RabbitMQDirectConfig.java
 C:\Users\edwin\Downloads\sales\sales\src\main\java\com\duka\sales\exceptions\ResourceNotFoundException.java
