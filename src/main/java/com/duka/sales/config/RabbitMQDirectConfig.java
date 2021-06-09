@@ -13,7 +13,7 @@ public class RabbitMQDirectConfig {
 
 	@Bean
 	Queue adminQueue() {
-		return new Queue("duka-sales-queue", false);
+		return new Queue("duka-sale-queue", false);
 	}
 
 	@Bean
