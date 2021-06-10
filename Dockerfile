@@ -6,6 +6,6 @@ WORKDIR /usr/app
 
 RUN sh -c 'touch sales-service-0.0.1-SNAPSHOT.jar'
 
-EXPOSE 127.0.0.1:8080
+EXPOSE 8080
 
 ENTRYPOINT ["java","-jar","sales-0.0.1-SNAPSHOT.jar"]
