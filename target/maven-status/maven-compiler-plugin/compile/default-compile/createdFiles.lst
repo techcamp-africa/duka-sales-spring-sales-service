@@ -1,0 +1,12 @@
+com\duka\sales\config\RabbitMQDirectConfig.class
+com\duka\sales\exceptions\ErrorException.class
+com\duka\sales\models\Sale.class
+com\duka\sales\models\AuditModel.class
+com\duka\sales\config\RestTemplateBean.class
+com\duka\sales\controllers\SalesController.class
+com\duka\sales\SalesApplication$1.class
+com\duka\sales\repositories\SaleRepository.class
+com\duka\sales\exceptions\ResourceNotFoundException.class
+com\duka\sales\pojo\Inventory.class
+com\duka\sales\SalesApplication.class
+com\duka\sales\config\SwaggerConfig.class

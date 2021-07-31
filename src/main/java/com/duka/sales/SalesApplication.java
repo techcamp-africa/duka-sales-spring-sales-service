@@ -15,6 +15,7 @@ public class SalesApplication {
 		SpringApplication.run(SalesApplication.class, args);
 	}
 	
+//	mvnw clean install -DskipTests
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
@@ -24,4 +25,5 @@ public class SalesApplication {
 		};
 	}
 	
+		
 }

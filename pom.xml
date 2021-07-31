@@ -8,13 +8,14 @@
 		<version>2.3.9.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+		
 	<groupId>com.duka</groupId>
 	<artifactId>sales</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sales</name>
 	<description>Sales project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
