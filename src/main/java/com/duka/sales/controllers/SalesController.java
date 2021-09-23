@@ -94,7 +94,7 @@ public class SalesController {
 			}
 	 }
 	 
-	 public void logger(String message)
+	 public String logger(String message)
 	 { 		 
 		 amqpTemplate.convertAndSend(queue.getName(), new String(message));
 		 return "successfully logged"; 
