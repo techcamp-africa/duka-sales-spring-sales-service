@@ -79,26 +79,25 @@ public class SalesController {
 	 
 	 @PostMapping("/sales")
 	 public Sale createSale(@RequestBody Sale sale) 
-	 { 
-			 String full_url = this.sales_url + "/inventories/" + sale.getInvId();
-			 
-//			 try {
+	 { 			 
+			 try {
+				 String full_url = this.sales_url + "/inventories/" + sale.getInvId();
 				 this.inventory = restTemplate.getForObject(full_url, Inventory.class);
 				 Sale s = salesrepo.save(sale);
 				 logger("Successfull Save Sale Record No.: " + s.getId());
 				 return s;
-//			 
-//			 }catch (Exception e) {
-//				
-//				 logger("Failed Save Sale Record Inventory No.: " + sale.getInvId());
-//				 throw new ResourceNotFoundException("inventory with id " + sale.getInvId() + " not found");
-//			}
+			 
+			 }catch (Exception e) {
+				
+				 logger("Failed Save Sale Record Inventory No.: " + sale.getInvId());
+				 throw new ResourceNotFoundException("inventory with id " + sale.getInvId() + " not found");
+			}
 	 }
 	 
 	 public void logger(String message)
 	 { 		 
-//		 amqpTemplate.convertAndSend(queue.getName(), new String(message));
-//		 return "successfully logged"; 
+		 amqpTemplate.convertAndSend(queue.getName(), new String(message));
+		 return "successfully logged"; 
 	 }
 	 
 	
