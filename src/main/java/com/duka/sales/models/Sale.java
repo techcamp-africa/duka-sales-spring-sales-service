@@ -44,7 +44,7 @@ public class Sale extends AuditModel {
 		this.uid = uid;
 	}
 
-
+ 
 	public Long getId() {
 		return id;
 	}
