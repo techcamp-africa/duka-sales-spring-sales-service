@@ -77,6 +77,17 @@ public class SalesController {
 	  	 return salesrepo.findByUid(id);        
 	 }
 	 
+	 @GetMapping("/sales/{inv_id}/{u_id}")
+	 public List<Sale> getAllSalesByInvAndUser(@PathVariable String inv_id,@PathVariable String u_id ) 
+	 {
+		 String uid = new String(u_id);
+		 String invid = new String(inv_id);
+		 int id = Integer.parseInt(invid);
+		 logger("Sales Records fetched for user id "+ uid);
+
+	  	 return salesrepo.findByInvIdAndUid(id, uid);        
+	 }
+	 
 	 @PostMapping("/sales")
 	 public Sale createSale(@RequestBody Sale sale) 
 	 { 			 

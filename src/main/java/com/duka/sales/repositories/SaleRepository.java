@@ -11,4 +11,7 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
 	List<Sale> findByInvId(int inv_id);
 	
 	List<Sale> findByUid(String uid);
+	
+
+	List<Sale> findByInvIdAndUid(int id, String uid);
 }
