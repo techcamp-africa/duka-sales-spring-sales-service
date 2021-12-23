@@ -92,8 +92,8 @@ public class SalesController {
 	 public Sale createSale(@RequestBody Sale sale) 
 	 { 			 
 			 try {
-				 String full_url = this.sales_url + "/inventories/" + sale.getInvId();
-				 this.inventory = restTemplate.getForObject(full_url, Inventory.class);
+//				 String full_url = this.sales_url + "/inventories/" + sale.getInvId();
+//				 this.inventory = restTemplate.getForObject(full_url, Inventory.class);
 				 Sale s = salesrepo.save(sale);
 				 logger("Successfull Save Sale Record No.: " + s.getId());
 				 return s;
